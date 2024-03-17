@@ -20,9 +20,9 @@
   {  
     "platformName": "Android",  
     "appium:platformVersion": "14",  
-    "appium:appPackage": "com.nopstation.nopcommerce.nopstationcart",
-    "appium:appActivity": "com.bs.ecommerce.main.SplashScreenActivity",
-    "appium:app": System.getProperty("user.dir")+"/src/test/resources/nopstationCart_4.40 1.apk"  
+    "appium:appPackage": "com.nopstation.nopcommerce.nopstationcart",  
+    "appium:appActivity": "com.bs.ecommerce.main.SplashScreenActivity",  
+    "appium:app": System.getProperty("user.dir")+"/src/test/resources/nopstationCart_4.40 1.apk"    
   }  
 - Open Intellij Idea
 - Hit this command into the terminal:  
