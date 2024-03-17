@@ -8,8 +8,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -73,7 +76,9 @@ public class AppScreen {
                 .perform();
 
         cartView.get(7).click();
-        Thread.sleep(5000);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.nopstation.nopcommerce.nopstationcart:id/ivCategoryBanner")));
 
         new TouchAction(driver)
                 .longPress(PointOption.point(833, 2005))
@@ -81,34 +86,32 @@ public class AppScreen {
                 .release()
                 .perform();
         cartView.get(8).click();
-        Thread.sleep(5000);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.nopstation.nopcommerce.nopstationcart:id/image_view")));
 
         new TouchAction(driver)
                 .longPress(PointOption.point(819, 1629))
                 .moveTo(PointOption.point(819, 921))
                 .release()
                 .perform();
-        Thread.sleep(5000);
         btnPlus.click();
-        Thread.sleep(5000);
         btnAddToCart.click();
-        Thread.sleep(5000);
     }
 
     public String placeOrderGuestFuc() throws InterruptedException {
         iconCounter.click();
-        Thread.sleep(3000);
+
         btnCheckout.click();
-        Thread.sleep(3000);
+
         btnGuestCheckout.click();
-        Thread.sleep(3000);
+
         firstName.sendKeys("Fariha");
         lastName.sendKeys("Rahman");
         email.sendKeys("fariharahman.cse@gmail.com");
-        Thread.sleep(3000);
+
 
         countrySpinner.click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         new TouchAction(driver)
                 .longPress(PointOption.point(536, 2164))
@@ -117,10 +120,10 @@ public class AppScreen {
                 .perform();
 
         driver.findElements(By.className("android.widget.TextView")).get(13).click();
-        Thread.sleep(3000);
+
 
         stateSpinner.click();
-        Thread.sleep(3000);
+
         driver.findElements(By.className("android.widget.TextView")).get(1).click();
 
         etCName.sendKeys("JU");
@@ -133,12 +136,12 @@ public class AppScreen {
                 .release()
                 .perform();
         etSAddr.sendKeys("34/13Dhaka");
-        Thread.sleep(3000);
+
         etZipCode.sendKeys("2345");
         etPhoneN.sendKeys("01992884775");
         etFax.sendKeys("1236");
         btnCont.click();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         driver.findElements(By.className("android.widget.RelativeLayout")).get(8).click();
 
@@ -149,7 +152,7 @@ public class AppScreen {
                 .perform();
 
         driver.findElements(By.className("android.widget.Button")).get(1).click();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         new TouchAction(driver)
                 .longPress(PointOption.point(453, 1999))
                 .moveTo(PointOption.point(453, 87))
@@ -161,18 +164,20 @@ public class AppScreen {
                 .moveTo(PointOption.point(495, 495))
                 .release()
                 .perform();
-        Thread.sleep(2000);
+
         driver.findElements(By.className("android.widget.ImageView")).get(21).click();
-        Thread.sleep(2000);
+
         driver.findElements(By.className("android.widget.Button")).get(1).click();
-        Thread.sleep(3000);
+
         driver.findElement(By.className("android.widget.Button")).click();
 
-        Thread.sleep(3000);
-        driver.findElement(By.id("com.nopstation.nopcommerce.nopstationcart:id/checkoutButton")).click();
-        Thread.sleep(5000);
-        String verifyTxt = driver.findElement(By.id("com.nopstation.nopcommerce.nopstationcart:id/md_text_message")).getText();
         Thread.sleep(2000);
+        driver.findElement(By.id("com.nopstation.nopcommerce.nopstationcart:id/checkoutButton")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("com.nopstation.nopcommerce.nopstationcart:id/md_text_message")));
+
+        String verifyTxt = driver.findElement(By.id("com.nopstation.nopcommerce.nopstationcart:id/md_text_message")).getText();
 
         return verifyTxt;
 
